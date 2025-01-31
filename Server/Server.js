@@ -16,8 +16,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 
+
+// Environment Variables
+const MONGODB_URI = 'mongodb atlas connection URL';
+const EMAIL_USER = 'your email';
+const EMAIL_PASS = 'your email app password';
+
+
 mongoose
-  .connect('mongodb+srv://pranatisreya:smartexit_passwd@smartexit.uvrogsn.mongodb.net/GatePass_DB?retryWrites=true&w=majority&appName=SmartExit', {
+  .connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
@@ -172,8 +179,8 @@ app.post('/StudentRegister', async (req, res) => {
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-          user: 'pranatisreya.dama@gmail.com',
-          pass: 'qbmgmgmedqutqsta',
+          user: EMAIL_USER,
+          pass: EMAIL_PASS,
         },
       });
 
