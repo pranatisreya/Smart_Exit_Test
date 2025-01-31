@@ -15,12 +15,15 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
-
-
 // Environment Variables
-const MONGODB_URI = 'mongodb atlas connection URL';
-const EMAIL_USER = 'your email';
-const EMAIL_PASS = 'your email app password';
+const MONGODB_URI = 'mongodb+srv://pranatisreya:smartexit_passwd@smartexit.uvrogsn.mongodb.net/GatePass_DB?retryWrites=true&w=majority&appName=SmartExit';
+const EMAIL_USER = 'pranatisreya.dama@gmail.com';
+const EMAIL_PASS = 'qbmgmgmedqutqsta';
+
+// // Environment Variables
+// const MONGODB_URI = 'mongodb atlas connection URL';
+// const EMAIL_USER = 'your email';
+// const EMAIL_PASS = 'your email app password';
 
 
 mongoose
