@@ -16,17 +16,15 @@ app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
 
-
 mongoose
-  .connect('mongodb://127.0.0.1:27017/GatePass_DB', {
+  .connect('mongodb+srv://pranatisreya:smartexit_passwd@smartexit.uvrogsn.mongodb.net/GatePass_DB?retryWrites=true&w=majority&appName=SmartExit', {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
   .then(() => {
-    console.log('GatePass_DB MongoDB Connected');
+    console.log('GatePass_DB MongoDB CONNECTED');
   })
   .catch((err) => console.log(err));
-
 
 
 
@@ -61,6 +59,67 @@ const LeaveApplicationSchema = new mongoose.Schema({
 });
 
 const LeaveApplication = mongoose.model('LeaveApplication', LeaveApplicationSchema, 'StudentGatePass_db');
+
+
+
+// const multer = require('multer');
+// const GridFsStorage = require('multer-gridfs-storage');
+// const Grid = require('gridfs-stream');
+// const mongoose = require('mongoose');
+
+// // Create storage engine for GridFS
+// const storage = new GridFsStorage({
+//   url: 'mongodb://127.0.0.1:27017/GatePass_DB',
+//   file: (req, file) => {
+//     return {
+//       bucketName: 'photos', // where photos will be stored in MongoDB
+//       filename: file.originalname, // original file name
+//     };
+//   }
+// });
+
+// const upload = multer({ storage });
+
+// // Route for student registration with image upload
+// app.post('/StudentRegister', upload.single('passportPhoto'), async (req, res) => {
+//   const { studentName, rollNo, branch, year, section, semester, phoneNumber, personalEmail, officialEmail, parentName, parentPhoneNumber, parentEmail, password, confirmPassword } = req.body;
+//   const passportPhoto = req.file ? req.file.filename : null; // Retrieve the uploaded file's name
+
+//   try {
+//     const existingStudent = await Student.findOne({ rollNo });
+//     if (existingStudent) {
+//       res.json('exist');
+//     } else {
+//       const otp = otpGenerator.generate(6, { upperCase: false, specialChars: false });
+//       otpCache[personalEmail] = otp;
+
+//       const newStudent = new Student({
+//         studentName,
+//         rollNo,
+//         branch,
+//         year,
+//         section,
+//         semester,
+//         phoneNumber,
+//         personalEmail,
+//         officialEmail,
+//         parentName,
+//         parentPhoneNumber,
+//         parentEmail,
+//         password,
+//         confirmPassword,
+//         passportPhoto, // Add the passport photo filename to the student data
+//         registrationDate: new Date(),
+//       });
+
+//       await newStudent.save();
+//       res.json('notexist');
+//     }
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json('error');
+//   }
+// });
 
 
 
@@ -113,13 +172,13 @@ app.post('/StudentRegister', async (req, res) => {
         port: 587,
         secure: false, // true for 465, false for other ports
         auth: {
-          user: 'pranayasreti@gmail.com',
-          pass: 'kjnymtxmezhesclw',
+          user: 'pranatisreya.dama@gmail.com',
+          pass: 'qbmgmgmedqutqsta',
         },
       });
 
       const mailOptions = {
-        from: 'pranayasreti@gmail.com',
+        from: 'pranatisreya.dama@gmail.com',
         to: personalEmail,
         subject: 'CBIT smart-exit registration OTP',
         text: `Your OTP for registration is: ${otp}`,
